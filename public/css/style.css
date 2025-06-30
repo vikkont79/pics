@@ -1,0 +1,93 @@
+@font-face {
+  font-family: "PT Sans";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/ptsans-400.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "PT Sans";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/ptsans-700.woff2") format("woff2");
+}
+
+body {
+  margin: 0;
+  font-family: "PT Sans", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  color: #000000;
+  background-color: #fffbef;
+  background-image: url("../img/waves.svg"); 
+  background-repeat: no-repeat;
+  background-position:  top center;
+  background-size:  cover;    
+}
+
+.game {
+  min-inline-size: min-content;
+  max-inline-size: 575px;
+  display: grid;
+  grid-template-columns: auto  1fr auto;
+  align-items: center;
+  gap: 30px;    
+  margin-inline: auto;  
+  padding-inline: 10px;
+  padding-block: 30px;
+}
+
+.cards {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  min-block-size: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  background-color: #ffffff;
+  border-radius: 10px;    
+  font-size: 20px;
+  line-height: 30px; 
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.card img {
+  inline-size: 100%;
+  object-fit: cover;
+}
+
+.selected {
+  outline: 4px solid #2e63b3;
+}
+
+.error {
+  outline: 4px solid #cf1a1a;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+  perspective: 1000px;
+}
+
+.card.disabled {
+  cursor: default;
+  animation: repaint 0.8s 0.2s forwards;
+}
+
+.card.disabled img {
+  opacity: 0.25;
+}
+
+.card:not(.selected):not(.disabled):hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
