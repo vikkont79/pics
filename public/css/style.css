@@ -39,6 +39,29 @@ body {
   padding-block: 30px;
 }
 
+.hit-points-indicator {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 0;
+}
+
+.hit-points-unused {
+  width: 22px;
+  height: 20px;
+  background-image: url("../img/heart-red.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hit-points-used {
+  width: 22px;
+  height: 20px;
+  background-image: url("../img/heart-grey.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .cards {
   grid-column: 1 / -1;
   display: grid;

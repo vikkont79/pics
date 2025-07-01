@@ -1,6 +1,17 @@
+import { useState } from "react";
 import { Card } from "../../shared/card/card";
 
-function CardsList({ words = [], selectedItems= [], finishedItems = [] }) {
+function CardsList({ words = [], finishedItems = [], checkItems }) {
+  const [selectedItems, setSelectedItems] = useState([]);
+
+  const handleCardClick = (id) => {
+    if (selectedItems.includes(id)) {
+      return;
+    }
+    checkItems();
+    setSelectedItems((items) => [...items, id]);
+  }
+
   return (
     <ul className="cards">
       {words.map((item) => (
@@ -9,6 +20,7 @@ function CardsList({ words = [], selectedItems= [], finishedItems = [] }) {
           {...item}
           isSelected={selectedItems.includes(item.id)}
           isFinished={finishedItems.includes(item.id)}
+          onCardClick={handleCardClick}
         />
       ))}
     </ul>

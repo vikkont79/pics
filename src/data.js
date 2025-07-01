@@ -73,7 +73,6 @@ const words = [
   }
 ];
 
-const selectedItems = ['3', '4'];
-const finishedItems = ['11', '12'];
 
-export { words, selectedItems, finishedItems };
+
+export { words };
