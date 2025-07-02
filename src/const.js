@@ -1,0 +1,4 @@
+const TIMEOUT = 3000;
+const LIVES_COUNT = 3;
+
+export { TIMEOUT, LIVES_COUNT }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card } from "../../shared/card/card";
+import { TIMEOUT } from "../../../const";
 
 function CardsList({ words = [], finishedItems = [], checkItems }) {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -8,9 +9,22 @@ function CardsList({ words = [], finishedItems = [], checkItems }) {
     if (selectedItems.includes(id)) {
       return;
     }
-    checkItems();
-    setSelectedItems((items) => [...items, id]);
-  }
+    switch (selectedItems.length) {
+      case 0:      
+        setSelectedItems([id]);
+        break;
+      case 1:
+        const firstId = selectedItems[0];
+        setSelectedItems((items) => [...items, id]);
+        checkItems(firstId, id);
+        setTimeout(() => {
+          setSelectedItems([]);
+        }, TIMEOUT);
+        break;
+      default:
+        setSelectedItems([]);
+    }
+  };
 
   return (
     <ul className="cards">
@@ -20,6 +34,7 @@ function CardsList({ words = [], finishedItems = [], checkItems }) {
           {...item}
           isSelected={selectedItems.includes(item.id)}
           isFinished={finishedItems.includes(item.id)}
+          isChecking={selectedItems.length === 2}
           onCardClick={handleCardClick}
         />
       ))}

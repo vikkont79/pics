@@ -1,13 +1,17 @@
-function Card({ id, type, url, word, isSelected, isFinished, onCardClick }) {
-  
+function Card({ id, type, url, word, isSelected, isFinished, isChecking, onCardClick }) {
+
   const content = type === 'image'
     ? <img src={url} width="185" height="100" alt="" />
     : <span>{word}</span>;
 
+  const showError = isChecking && isSelected && !isFinished;
+
   const className = `card ${
-    isSelected ? 'selected' : ''
+      isSelected ? 'selected' : ''
     } ${
-    isFinished ? 'disabled' : ''
+      isFinished ? 'disabled' : ''
+    } ${
+      showError ? 'error' : ''
     }`;
 
   const handleClick = () => {

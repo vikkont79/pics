@@ -1,20 +1,33 @@
-import { useState } from "react";
 import { CardsList } from "../blocks/cards-list/cards-list";
-import { Hearts } from "../blocks/hearts/hearts";
+import { Modal } from "../blocks/modal/modal";
+import { useGame } from "../../hooks/use-game";
+import { Header } from "../blocks/header/header";
 
 function App({ words = [] }) {
-  const finishedItems = ['2'];
-  const [stepsCount, setStepsCount] = useState(0);
+  const {
+        finishedItems,
+        handleReset,
+        checkItems,
+        errorsCount,
+        isGameOver,
+        isWin
+      } = useGame(words);
 
-  const checkItems = () => {
-    setStepsCount((i) => i + 1);
-  };
+  const modalClassName = isWin ? '' : 'modal-box-lose';
+  const modalCaption = isWin ? 'Победа' : 'Поражение';
+  const modalDescription = `Вы нашли ${finishedItems.length / 2} слова`;
 
   return (
     <section className="game">
-      <img src="img/pics-to-words.svg" width="112" height="16" alt="Pics to words" />
-      <Hearts count={3} value={stepsCount}/>
+      <Header value={finishedItems.length} max={words.length} errorsCount={errorsCount} />
       <CardsList words={words} finishedItems={finishedItems} checkItems={checkItems} />
+      {isGameOver && (
+        <Modal className={modalClassName}>
+          <h3 className="modal-caption">{modalCaption}</h3>
+          <p className="modal-description">{modalDescription}</p>
+          <button className="button" onClick={handleReset} type="button">Новая игра</button>
+        </Modal>
+      )}
     </section>
   );
 }
