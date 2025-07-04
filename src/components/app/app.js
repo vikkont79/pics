@@ -1,34 +1,40 @@
-import { CardsList } from "../blocks/cards-list/cards-list";
-import { Modal } from "../blocks/modal/modal";
-import { useGame } from "../../hooks/use-game";
-import { Header } from "../blocks/header/header";
+import { useState } from "react";
+import { GamePage } from "../pages/game-page/game-page";
+import { ResultsPage } from "../pages/results-page/results-page";
+import { AppRoute } from "../../const";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
-function App({ words = [] }) {
-  const {
-        finishedItems,
-        handleReset,
-        checkItems,
-        errorsCount,
-        isGameOver,
-        isWin
-      } = useGame(words);
+function App({ words = [], results = [] }) {
+  const navigate = useNavigate();  
+  const [result, setResult] = useState(0);
 
-  const modalClassName = isWin ? '' : 'modal-box-lose';
-  const modalCaption = isWin ? 'Победа' : 'Поражение';
-  const modalDescription = `Вы нашли ${finishedItems.length / 2} слова`;
+  const showResults = (wordsCount) => {
+    setResult(wordsCount);
+    navigate(AppRoute.Results);
+  };
 
+  const handleReset = () => {
+    navigate(AppRoute.Game);
+  };
+  
   return (
-    <section className="game">
-      <Header value={finishedItems.length} max={words.length} errorsCount={errorsCount} />
-      <CardsList words={words} finishedItems={finishedItems} checkItems={checkItems} />
-      {isGameOver && (
-        <Modal className={modalClassName}>
-          <h3 className="modal-caption">{modalCaption}</h3>
-          <p className="modal-description">{modalDescription}</p>
-          <button className="button" onClick={handleReset} type="button">Новая игра</button>
-        </Modal>
-      )}
-    </section>
+    <Routes> 
+      <Route path="/" element={<Navigate to={AppRoute.Game} replace />} />     
+      <Route
+        path={AppRoute.Game}
+        element={<GamePage words={words} onShowResults={showResults} />}
+      />
+      <Route
+        path={AppRoute.Results}
+        element={
+          <ResultsPage 
+            results={results} 
+            playerResult={result} 
+            onResetGame={handleReset} 
+          />
+        }
+      />
+    </Routes>
   );
 }
 

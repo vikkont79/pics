@@ -18,10 +18,10 @@ const useGame = (words) => {
     setStepsCount((i) => i + 1);
   };
 
-  const handleReset = () => {
+  /*const handleReset = () => {
     setFinishedItems([]);
     setStepsCount(0);
-  }
+  }*/
 
   const errorsCount = stepsCount - finishedItems.length / 2;
   const lives = LIVES_COUNT - errorsCount;
@@ -30,7 +30,7 @@ const useGame = (words) => {
   return {
     finishedItems,
     checkItems,
-    handleReset,
+    //handleReset,
     errorsCount,
     isWin,
     isGameOver

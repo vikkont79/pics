@@ -1,4 +1,9 @@
-const TIMEOUT = 3000;
+const TIMEOUT = 1000;
 const LIVES_COUNT = 3;
 
-export { TIMEOUT, LIVES_COUNT }
+const AppRoute = {
+  Game: '/game',
+  Results: '/results',
+};
+
+export { TIMEOUT, LIVES_COUNT, AppRoute }

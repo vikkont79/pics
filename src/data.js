@@ -73,6 +73,12 @@ const words = [
   }
 ];
 
+const results = [
+  { name: 'Вася', steps: 1 },
+  { name: 'Аня', steps: 3 },
+  { name: 'Петя', steps: 5 },
+];
 
 
-export { words };
+
+export { words, results };
