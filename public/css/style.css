@@ -27,6 +27,101 @@ body {
   background-size:  cover;    
 }
 
+.rules {
+  padding: 30px 10px;
+  text-align: center;
+  min-width: min-content;
+}
+
+.rules img {
+  display: block;
+  margin: 0 auto 30px;
+}
+
+.rules h2 {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.rules h3 {
+  max-width: 520px;
+  text-align: left;
+  margin: 0 auto 15px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.rules-list {
+  padding: 0 20px 0 40px;
+  margin: 0 auto 40px;
+  list-style: none;
+  font-size: 16px;
+  line-height: 20px;
+  max-width: 500px;
+  text-align: left;
+}
+
+.rules-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.rules-list li::before {
+  content: "";
+  width: 10px;
+  height: 12px;
+  background-image: url("../img/marker.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  flex: none;
+}
+
+.ico-button {
+  padding: 10px 16px 10px 42px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background-color: #2e63b3;
+  background-position: left 12px center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.ico-button:hover {
+  background-color: #438eff;
+}
+
+.ico-button:active {
+  background-color: #438eff;
+}
+
+.ico-button-fin {
+  background-image: url("../img/fin.svg");
+}
+
+.ico-button-ger {
+  background-image: url("../img/ger.svg");
+}
+
+.ico-button-ita {
+  background-image: url("../img/ita.svg");
+}
+
+.rules .ico-button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .game {
   min-inline-size: min-content;
   max-inline-size: 575px;

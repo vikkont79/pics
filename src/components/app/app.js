@@ -3,10 +3,13 @@ import { GamePage } from "../pages/game-page/game-page";
 import { ResultsPage } from "../pages/results-page/results-page";
 import { AppRoute } from "../../const";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { getWords } from "../../data";
+import { StartPage } from "../pages/start-page/start-page";
 
-function App({ words = [], results = [] }) {
-  const navigate = useNavigate();  
+function App({ results = [] }) {
+  const navigate = useNavigate();
   const [result, setResult] = useState(0);
+  const [words, setWords] = useState([]);
 
   const showResults = (wordsCount) => {
     setResult(wordsCount);
@@ -14,12 +17,20 @@ function App({ words = [], results = [] }) {
   };
 
   const handleReset = () => {
-    navigate(AppRoute.Game);
+    navigate(AppRoute.Start);
   };
-  
+
+  const handleStart = (type) => {
+    setWords(getWords(type))
+    navigate(AppRoute.Game)
+  }
+
   return (
-    <Routes> 
-      <Route path="/" element={<Navigate to={AppRoute.Game} replace />} />     
+    <Routes>
+      <Route path="/" element={<Navigate to={AppRoute.Start} replace />} />
+      <Route
+        path={AppRoute.Start}
+        element={<StartPage onStart={handleStart} />} />
       <Route
         path={AppRoute.Game}
         element={<GamePage words={words} onShowResults={showResults} />}
@@ -27,10 +38,10 @@ function App({ words = [], results = [] }) {
       <Route
         path={AppRoute.Results}
         element={
-          <ResultsPage 
-            results={results} 
-            playerResult={result} 
-            onResetGame={handleReset} 
+          <ResultsPage
+            results={results}
+            playerResult={result}
+            onResetGame={handleReset}
           />
         }
       />
