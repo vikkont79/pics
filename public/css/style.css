@@ -347,6 +347,15 @@ body {
   text-align: center;
 }
 
+.modal-name {
+  padding-inline: 20px;
+  padding-block-start: 40px;
+}
+
+.modal-name h3 {
+  text-align: center;
+}
+
 .modal-caption {
   margin-top: -20px;
   margin-bottom: 10px;
@@ -374,6 +383,12 @@ body {
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
+}
+
+.modal-input {
+  margin-block-end: 20px;
+  padding: 5px;
+  border-radius: 10px;
 }
 
 @keyframes shake {

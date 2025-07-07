@@ -1,8 +1,5 @@
-function ResultsTable({ results, playerResult }) {
-    const sortedResults = [
-    ...results,
-    { name: `Ваш результат`, steps: playerResult }
-  ].sort((a, b) => b.steps - a.steps);
+function ResultsTable({ results, playerName }) {
+    const sortedResults = [...results].sort((a, b) => b.steps - a.steps);
 
   return (
     <table className="result-table">
@@ -15,7 +12,7 @@ function ResultsTable({ results, playerResult }) {
         </thead>
         <tbody>
           {sortedResults.map(({ name, steps }, index) => (
-            <tr key={name} className={`result-table-row ${name === `Ваш результат` ? 'active' : ''}`}>
+            <tr key={name} className={`result-table-row ${name === playerName ? 'active' : ''}`}>
               <td>{index + 1}</td>
               <td>{name}</td>
               <td>{steps}</td>

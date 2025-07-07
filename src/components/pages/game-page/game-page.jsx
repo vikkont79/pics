@@ -3,7 +3,7 @@ import { CardsList } from "../../blocks/cards-list/cards-list";
 import { Header } from "../../blocks/header/header";
 import { Modal } from "../../blocks/modal/modal";
 
-function GamePage({ words = [], onShowResults }) {
+function GamePage({ words = [], onShowResults, playerName }) {
   const {
         finishedItems,
         //handleReset,
@@ -15,7 +15,7 @@ function GamePage({ words = [], onShowResults }) {
 
   const modalClassName = isWin ? '' : 'modal-box-lose';
   const modalCaption = isWin ? 'Победа' : 'Поражение';
-  const modalDescription = `Вы нашли ${finishedItems.length / 2} слова`;
+  const modalDescription = `${playerName}, вы нашли ${finishedItems.length / 2} слова`;
 
   const handleResultsClick = () => {
     onShowResults(finishedItems.length / 2);
